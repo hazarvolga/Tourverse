@@ -1,4 +1,5 @@
 import { HeroSection } from '@/components/hero/hero-section';
+import { ParallaxCta } from '@/components/cta/parallax-cta';
 import { TourCard } from '@/components/tours/tour-card';
 import { TourFilter } from '@/components/tours/tour-filter';
 import { toursData } from '@/lib/data';
@@ -44,6 +45,7 @@ export default function Home() {
           </div>
         </main>
       </div>
+      <ParallaxCta />
     </>
   );
 }
