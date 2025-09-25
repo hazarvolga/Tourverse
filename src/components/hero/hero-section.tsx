@@ -1,144 +1,102 @@
 'use client';
 
-import * as React from 'react';
+import React from 'react';
 import Image from 'next/image';
-import Autoplay from 'embla-carousel-autoplay';
-
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  type CarouselApi,
-} from '@/components/ui/carousel';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { cn } from '@/lib/utils';
 import { Button } from '../ui/button';
 import Link from 'next/link';
-
-const heroSlides = [
-  {
-    id: 'hero-slide-1',
-    title: 'Discover Unforgettable Journeys',
-    description: 'Explore curated tours to the world\'s most breathtaking destinations.',
-    imageId: 'hero-slide-1',
-  },
-  {
-    id: 'hero-slide-2',
-    title: 'Adventure Awaits',
-    description: 'From mountain peaks to ocean depths, your next great story is out there.',
-    imageId: 'hero-slide-2',
-  },
-  {
-    id: 'hero-slide-3',
-    title: 'Experience Cultures',
-    description: 'Immerse yourself in new traditions, flavors, and ways of life.',
-    imageId: 'hero-slide-3',
-  },
-];
+import { ArrowRight } from 'lucide-react';
+import { useInView } from 'react-intersection-observer';
+import { cn } from '@/lib/utils';
 
 export function HeroSection() {
-  const [api, setApi] = React.useState<CarouselApi>();
-  const [current, setCurrent] = React.useState(0);
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
+
+  const parallaxRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    if (!api) {
-      return;
-    }
-
-    setCurrent(api.selectedScrollSnap());
-
-    const onSelect = () => {
-      setCurrent(api.selectedScrollSnap());
+    const handleScroll = () => {
+      if (parallaxRef.current) {
+        const yOffset = window.pageYOffset;
+        parallaxRef.current.style.transform = `translateY(${yOffset * 0.3}px)`;
+      }
     };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-    api.on('select', onSelect);
-
-    return () => {
-      api.off('select', onSelect);
-    };
-  }, [api]);
+  const featuredImage = PlaceHolderImages.find(img => img.id === 'hero-slide-1');
 
   return (
-    <section className="w-full">
-      <Carousel
-        setApi={setApi}
-        plugins={[
-          Autoplay({
-            delay: 5000,
-            stopOnInteraction: true,
-          }),
-        ]}
-        opts={{
-          loop: true,
-        }}
-      >
-        <CarouselContent>
-          {heroSlides.map((slide, index) => {
-            const image = PlaceHolderImages.find(img => img.id === slide.imageId);
-            return (
-              <CarouselItem key={slide.id}>
-                <div className="relative h-[60vh] min-h-[400px] w-full">
-                  {image && (
+    <section ref={ref} className="relative min-h-[80vh] w-full overflow-hidden bg-background py-20 md:py-32">
+      <div className="container mx-auto px-4 md:px-6 h-full flex items-center">
+        {/* Asymmetrical Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          {/* Text Content */}
+          <div className="lg:col-span-5 z-10 text-center lg:text-left">
+            <h1 
+              className={cn(
+                "text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-foreground transition-all duration-700 ease-out",
+                inView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+              )}
+            >
+              Discover Unforgettable Journeys
+            </h1>
+            <p 
+              className={cn(
+                "mt-6 text-lg md:text-xl text-muted-foreground max-w-md mx-auto lg:mx-0 transition-all duration-700 ease-out delay-200",
+                 inView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+              )}
+            >
+              Explore curated tours to the world's most breathtaking destinations. Your next great story is out there.
+            </p>
+            <div 
+              className={cn(
+                "mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start transition-all duration-700 ease-out delay-300",
+                inView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+              )}
+            >
+              <Button size="lg" asChild>
+                <Link href="/dashboard/bookings">
+                  Book Now <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button size="lg" variant="secondary" asChild>
+                <Link href="#">
+                  Explore Destinations
+                </Link>
+              </Button>
+            </div>
+          </div>
+
+          {/* Image Content */}
+          <div className="lg:col-span-7 relative flex items-center justify-center lg:justify-end h-full">
+            <div 
+              className={cn(
+                "relative w-[90vw] h-[60vh] max-w-4xl rounded-lg overflow-hidden shadow-2xl transition-all duration-1000 ease-in-out",
+                inView ? "scale-100 opacity-100" : "scale-90 opacity-0"
+              )}
+            >
+                {featuredImage && (
+                  <div ref={parallaxRef} className="absolute inset-[-15%] w-[130%] h-[130%]">
                     <Image
-                      src={image.imageUrl}
-                      alt={slide.title}
+                      src={featuredImage.imageUrl}
+                      alt="Featured Destination"
                       fill
                       className="object-cover"
-                      priority={index === 0}
-                      data-ai-hint={image.imageHint}
+                      priority
+                      data-ai-hint={featuredImage.imageHint}
                     />
-                  )}
-                  <div className="absolute inset-0 bg-black/50" />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
-                    <div className="overflow-hidden">
-                      <h1
-                        className={cn(
-                          'text-4xl font-bold tracking-tight text-shadow-lg sm:text-5xl md:text-6xl transition-all duration-1000',
-                          current === index
-                            ? 'translate-y-0 opacity-100'
-                            : 'translate-y-full opacity-0'
-                        )}
-                        style={{ transitionDelay: current === index ? '200ms' : '0ms' }}
-                      >
-                        {slide.title}
-                      </h1>
-    
-                    </div>
-                    <div className="overflow-hidden mt-4">
-                        <p
-                            className={cn(
-                                'mt-3 max-w-md text-lg text-shadow-md sm:max-w-xl transition-all duration-1000',
-                                current === index
-                                ? 'translate-y-0 opacity-100'
-                                : 'translate-y-full opacity-0'
-                            )}
-                            style={{ transitionDelay: current === index ? '400ms' : '0ms' }}
-                        >
-                            {slide.description}
-                        </p>
-                    </div>
-                    <div className="overflow-hidden mt-8">
-                        <div
-                             className={cn(
-                                'transition-all duration-1000',
-                                current === index
-                                ? 'translate-y-0 opacity-100'
-                                : 'translate-y-full opacity-0'
-                            )}
-                            style={{ transitionDelay: current === index ? '600ms' : '0ms' }}
-                        >
-                            <Button asChild size="lg" className='bg-primary hover:bg-primary/90'>
-                                <Link href="/dashboard/bookings">Explore Tours</Link>
-                            </Button>
-                        </div>
-                    </div>
                   </div>
-                </div>
-              </CarouselItem>
-            );
-          })}
-        </CarouselContent>
-      </Carousel>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/10" />
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
