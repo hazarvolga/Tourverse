@@ -5,6 +5,7 @@ import { TourFilter } from '@/components/tours/tour-filter';
 import { toursData } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { DestinationsSection } from '@/components/destinations/destinations-section';
 
 export default function Home() {
   const featuredTours = toursData.slice(0, 5); // Example: Show first 5 tours
@@ -46,6 +47,7 @@ export default function Home() {
         </main>
       </div>
       <ParallaxCta />
+      <DestinationsSection />
     </>
   );
 }
