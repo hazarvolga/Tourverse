@@ -28,3 +28,14 @@ export type EngagementData = {
   Bookings: number;
   Inquiries: number;
 };
+
+export type Tour = {
+  id: string;
+  name: string;
+  destination: string;
+  price: number;
+  duration: number; // in days
+  rating: number;
+  category: 'Adventure' | 'Cultural' | 'Relaxation' | 'City Break';
+  imageId: string;
+};

@@ -1,4 +1,4 @@
-import type { Booking, Customer, RevenueData, EngagementData } from './types';
+import type { Booking, Customer, RevenueData, EngagementData, Tour } from './types';
 
 export const bookingsData: Booking[] = [
   { id: 'BK001', customerName: 'Alice Johnson', customerEmail: 'alice@example.com', tourName: 'Parisian Wonders', date: '2024-09-15', status: 'Confirmed', price: 1200 },
@@ -35,4 +35,13 @@ export const engagementData: EngagementData[] = [
     { date: '24-07-05', Bookings: 45, Inquiries: 88 },
     { date: '24-07-06', Bookings: 60, Inquiries: 105 },
     { date: '24-07-07', Bookings: 55, Inquiries: 95 },
+];
+
+export const toursData: Tour[] = [
+  { id: 'TOUR01', name: 'Parisian Wonders', destination: 'Paris, France', price: 1200, duration: 7, rating: 4.8, category: 'Cultural', imageId: 'feature1' },
+  { id: 'TOUR02', name: 'Roman Holiday', destination: 'Rome, Italy', price: 1500, duration: 7, rating: 4.9, category: 'Cultural', imageId: 'feature2' },
+  { id: 'TOUR03', name: 'Andean Adventure', destination: 'Cusco, Peru', price: 3000, duration: 10, rating: 4.7, category: 'Adventure', imageId: 'feature3' },
+  { id: 'TOUR04', name: 'Tokyo Express', destination: 'Tokyo, Japan', price: 2200, duration: 5, rating: 4.6, category: 'City Break', imageId: 'feature4' },
+  { id: 'TOUR05', name: 'Beach Paradise', destination: 'Maldives', price: 4000, duration: 7, rating: 4.9, category: 'Relaxation', imageId: 'hero' },
+  { id: 'TOUR06', name: 'Mountain Trek', destination: 'Himalayas, Nepal', price: 2800, duration: 14, rating: 4.8, category: 'Adventure', imageId: 'avatar1' },
 ];
