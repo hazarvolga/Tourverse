@@ -31,6 +31,7 @@ const menuItems = [
   { href: '/dashboard/customers', label: 'Customers', icon: Users },
   { href: '/dashboard/tours', label: 'Tours', icon: MapPin },
   { href: '/dashboard/destinations', label: 'Destinations', icon: Globe },
+  { href: '/dashboard/planning', label: 'Planning', icon: Map },
 ];
 
 export function DashboardSidebar() {

@@ -29,8 +29,8 @@ const dashboardLinks = [
     icon: <Users className="size-8 text-primary" />,
   },
   {
-    href: '/dashboard/tours',
-    title: 'Tour Management',
+    href: '/dashboard/planning',
+    title: 'Tour Planning',
     description: 'Create and organize tour itineraries.',
     icon: <MapPin className="size-8 text-primary" />,
   },

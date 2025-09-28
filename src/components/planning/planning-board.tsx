@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { GripVertical, Clock, Edit, Trash2 } from 'lucide-react';
 import { toursData } from '@/lib/data';
 import { Button } from '../ui/button';
+import { cn } from '@/lib/utils';
 
 const badgeColors: { [key: string]: string } = {
     logistics: 'bg-slate-500',
@@ -11,10 +12,10 @@ const badgeColors: { [key: string]: string } = {
     dining: 'bg-orange-500',
     entertainment: 'bg-purple-500',
     leisure: 'bg-green-500',
-    Adventure: 'bg-accent',
-    Cultural: 'bg-primary',
-    Relaxation: 'bg-green-500',
-    "City Break": 'bg-purple-500',
+    Adventure: 'bg-accent text-accent-foreground',
+    Cultural: 'bg-primary text-primary-foreground',
+    Relaxation: 'bg-green-500 text-white',
+    "City Break": 'bg-purple-500 text-white',
 };
 
 export function PlanningBoard() {
@@ -32,7 +33,7 @@ export function PlanningBoard() {
                     <Clock className="h-4 w-4" />
                     <span>{tour.duration} days</span>
                 </div>
-                 <Badge className={`text-white ${badgeColors[tour.category]}`}>{tour.category}</Badge>
+                 <Badge className={cn(badgeColors[tour.category])} variant={tour.category === 'Adventure' ? 'secondary' : 'default'}>{tour.category}</Badge>
             </CardContent>
             <div className="p-4 border-t flex justify-end gap-2">
                 <Button variant="outline" size="sm">
