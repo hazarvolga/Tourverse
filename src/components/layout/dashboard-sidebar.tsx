@@ -22,6 +22,10 @@ import {
   Home,
   Globe,
   MapPin,
+  CreditCard,
+  FileText,
+  Contact,
+  Settings
 } from 'lucide-react';
 
 const menuItems = [
@@ -31,7 +35,10 @@ const menuItems = [
   { href: '/dashboard/customers', label: 'Customers', icon: Users },
   { href: '/dashboard/tours', label: 'Tours', icon: MapPin },
   { href: '/dashboard/destinations', label: 'Destinations', icon: Globe },
-  { href: '/dashboard/planning', label: 'Planning', icon: Map },
+  { href: '/dashboard/payments', label: 'Payments', icon: CreditCard },
+  { href: '/dashboard/reports', label: 'Reports', icon: FileText },
+  { href: '/dashboard/staff', label: 'Staff & Guides', icon: Contact },
+  { href: '/dashboard/settings', label: 'Settings', icon: Settings },
 ];
 
 export function DashboardSidebar() {
