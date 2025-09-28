@@ -2,8 +2,12 @@ import { RevenueChart } from '@/components/analytics/revenue-chart';
 import { EngagementChart } from '@/components/analytics/engagement-chart';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { DollarSign, Users, Activity, BarChart3 } from 'lucide-react';
+import { toursData } from '@/lib/data';
 
 export default function AnalyticsPage() {
+
+  const mostPopularTour = toursData.reduce((prev, current) => (prev.rating > current.rating) ? prev : current);
+
   return (
     <div className="space-y-8">
       <div>
@@ -40,8 +44,8 @@ export default function AnalyticsPage() {
             <Activity className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">Parisian Wonders</div>
-            <p className="text-xs text-muted-foreground">320 bookings this year</p>
+            <div className="text-2xl font-bold truncate">{mostPopularTour.name}</div>
+            <p className="text-xs text-muted-foreground">{mostPopularTour.rating} rating</p>
           </CardContent>
         </Card>
         <Card>
