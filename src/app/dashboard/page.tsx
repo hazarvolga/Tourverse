@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowRight, LineChart, BookCopy, Users, Map, Bot } from 'lucide-react';
+import { ArrowRight, LineChart, BookCopy, Users, MapPin, Globe, Bot } from 'lucide-react';
 
 const dashboardLinks = [
   {
@@ -29,10 +29,16 @@ const dashboardLinks = [
     icon: <Users className="size-8 text-primary" />,
   },
   {
-    href: '/dashboard/planning',
-    title: 'Tour Planning',
+    href: '/dashboard/tours',
+    title: 'Tour Management',
     description: 'Create and organize tour itineraries.',
-    icon: <Map className="size-8 text-primary" />,
+    icon: <MapPin className="size-8 text-primary" />,
+  },
+   {
+    href: '/dashboard/destinations',
+    title: 'Destination Management',
+    description: 'Manage all available destinations.',
+    icon: <Globe className="size-8 text-primary" />,
   },
 ];
 

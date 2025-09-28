@@ -20,6 +20,8 @@ import {
   Map,
   Bot,
   Home,
+  Globe,
+  MapPin,
 } from 'lucide-react';
 
 const menuItems = [
@@ -27,7 +29,8 @@ const menuItems = [
   { href: '/dashboard/analytics', label: 'Analytics', icon: LineChart },
   { href: '/dashboard/bookings', label: 'Bookings', icon: BookCopy },
   { href: '/dashboard/customers', label: 'Customers', icon: Users },
-  { href: '/dashboard/planning', label: 'Planning', icon: Map },
+  { href: '/dashboard/tours', label: 'Tours', icon: MapPin },
+  { href: '/dashboard/destinations', label: 'Destinations', icon: Globe },
 ];
 
 export function DashboardSidebar() {
@@ -58,7 +61,7 @@ export function DashboardSidebar() {
           <SidebarMenuItem key={item.href}>
             <SidebarMenuButton
               asChild
-              isActive={pathname === item.href}
+              isActive={pathname.startsWith(item.href) && (item.href !== '/dashboard' || pathname === '/dashboard')}
               tooltip={{ children: item.label, side: 'right' }}
             >
               <Link href={item.href}>
