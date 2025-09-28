@@ -66,7 +66,7 @@ export function TourCard({ tour }: TourCardProps) {
             ${tour.price}
           </div>
           <Button asChild>
-            <Link href={`/dashboard/bookings`} className="group-hover:pl-5 transition-all">
+            <Link href={`/tours/${tour.id}`} className="group-hover:pl-5 transition-all">
               Details <ArrowRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-opacity" />
             </Link>
           </Button>

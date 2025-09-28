@@ -72,7 +72,7 @@ export function DestinationsSection() {
                 </div>
                 <div className="text-center mt-12">
                      <Button size="lg" variant="outline" asChild>
-                        <Link href="/dashboard/bookings">
+                        <Link href="/destinations">
                             Explore All Destinations <ArrowRight className="ml-2 h-5 w-5" />
                         </Link>
                      </Button>

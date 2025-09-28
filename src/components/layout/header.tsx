@@ -2,12 +2,12 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/icons';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Globe, Map, User } from 'lucide-react';
+import { Menu, Globe, Users, MapPin, Info } from 'lucide-react';
 
 const navLinks = [
-  { href: '/dashboard/bookings', label: 'Tours', icon: Map },
-  { href: '#', label: 'Destinations', icon: Globe },
-  { href: '/dashboard/customers', label: 'About Us', icon: User },
+  { href: '/tours', label: 'Tours', icon: MapPin },
+  { href: '/destinations', label: 'Destinations', icon: Globe },
+  { href: '/about', label: 'About Us', icon: Info },
 ];
 
 export function SiteHeader() {
@@ -23,16 +23,16 @@ export function SiteHeader() {
           </Link>
         </div>
 
-        {/* Desktop Navigation - Icons */}
-        <nav className="hidden md:flex items-center space-x-2">
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-1">
           {navLinks.map(link => (
             <Button key={link.href} variant="ghost" asChild>
                 <Link
                 href={link.href}
-                className="transition-colors hover:text-primary text-muted-foreground flex items-center gap-2"
-                title={link.label}
+                className="transition-colors hover:text-primary text-muted-foreground font-medium flex items-center gap-2"
                 >
                 <link.icon className="h-5 w-5" />
+                {link.label}
                 </Link>
             </Button>
           ))}

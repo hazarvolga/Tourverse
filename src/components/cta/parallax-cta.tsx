@@ -86,7 +86,7 @@ export function ParallaxCta() {
             )}
         >
             <Button size="lg" asChild variant="secondary">
-                <Link href="/dashboard/bookings">
+                <Link href="/tours">
                     Start Planning
                 </Link>
             </Button>

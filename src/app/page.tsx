@@ -41,7 +41,7 @@ export default function Home() {
           </div>
           <div className="text-center mt-12">
              <Button size="lg" asChild>
-                <Link href="/dashboard/bookings">View All Tours</Link>
+                <Link href="/tours">View All Tours</Link>
              </Button>
           </div>
         </main>
