@@ -42,7 +42,7 @@ export default function DashboardPage() {
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Dashboard Overview</h1>
         <p className="text-muted-foreground mt-1">
-          Welcome back! Here&apos;s a quick look at your tour operations.
+          Welcome back! Here's a quick look at your tour operations.
         </p>
       </div>
 
