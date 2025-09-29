@@ -3,7 +3,7 @@
 'use client';
 
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useActionState } from 'react';
 import Image from 'next/image';
 import { toursData } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -13,11 +13,11 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
-import { Star, MapPin, Clock, Users, Sun, Moon, Building, Home, Tent, Info, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Star, MapPin, Clock, Users, Sun, Moon, Building, Home, Tent, Info, CheckCircle, AlertTriangle, CreditCard, CalendarCheck } from 'lucide-react';
 import { notFound, useParams } from 'next/navigation';
 import { formatCurrency } from '@/lib/utils';
 import { Separator } from '@/components/ui/separator';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useFormStatus } from 'react-dom';
 import { bookTourAction, type BookTourFormState } from '@/actions/book-tour-action';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
@@ -31,11 +31,42 @@ const initialState: BookTourFormState = {
   isError: false,
 };
 
-function SubmitButton() {
+function SubmitButton({ variant }: { variant: 'book' | 'pay' }) {
     const { pending } = useFormStatus();
+
+    const icons = {
+        book: <CalendarCheck />,
+        pay: <CreditCard />,
+    }
+
+    const text = {
+        book: 'Reserve Now',
+        pay: 'Pay Now',
+    }
+
+    const pendingText = {
+        book: 'Reserving...',
+        pay: 'Processing...',
+    }
+
     return (
-        <Button type="submit" size="lg" className="w-full" disabled={pending}>
-            {pending ? 'Booking...' : 'Book Now'}
+        <Button 
+            type="submit" 
+            size="lg" 
+            className="w-full" 
+            name="action"
+            value={variant}
+            disabled={pending}
+        >
+            {pending ? (
+                <>
+                    {icons[variant]} {pendingText[variant]}
+                </>
+            ) : (
+                <>
+                    {icons[variant]} {text[variant]}
+                </>
+            )}
         </Button>
     )
 }
@@ -49,13 +80,13 @@ export default function TourDetailPage() {
   const [accommodation, setAccommodation] = useState<AccommodationType>('hotel');
   const [guests, setGuests] = useState(1);
 
-  const [state, formAction] = useFormState(bookTourAction, initialState);
+  const [state, formAction] = useActionState(bookTourAction, initialState);
   const { toast } = useToast();
 
   React.useEffect(() => {
     if (state.message) {
       toast({
-        title: state.isError ? 'Booking Failed' : 'Booking Successful!',
+        title: state.isError ? 'Action Failed' : 'Action Successful!',
         description: state.message,
         variant: state.isError ? 'destructive' : 'default',
       });
@@ -189,7 +220,8 @@ export default function TourDetailPage() {
 
               </CardContent>
               <CardFooter className="flex flex-col gap-4">
-                <SubmitButton />
+                 <SubmitButton variant="pay" />
+                 <SubmitButton variant="book" />
               </CardFooter>
             </form>
           </Card>

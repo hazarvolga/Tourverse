@@ -9,6 +9,7 @@ const BookTourSchema = z.object({
   tourType: z.enum(['one-day', 'multi-day']),
   guests: z.coerce.number().int().min(1, 'You must book for at least 1 guest.'),
   accommodation: z.enum(['hotel', 'guesthouse', 'camping', 'none']).optional(),
+  action: z.enum(['book', 'pay']),
 });
 
 export type BookTourFormState = {
@@ -27,6 +28,7 @@ export async function bookTourAction(
     tourType: formData.get('tourType'),
     guests: formData.get('guests'),
     accommodation: formData.get('tourType') === 'multi-day' ? formData.get('accommodation') : 'none',
+    action: formData.get('action'),
   };
 
   const validatedFields = BookTourSchema.safeParse(rawFormData);
@@ -40,12 +42,22 @@ export async function bookTourAction(
   }
   
   try {
+    const { action, guests, tourName } = validatedFields.data;
+
+    if (action === 'pay') {
+        // In a real application, you would redirect to a payment gateway.
+        console.log('Redirecting to payment for:', validatedFields.data);
+        return {
+            message: `Redirecting to payment for your booking of ${guests} guest(s) on the '${tourName}' tour!`,
+            isError: false,
+        };
+    }
+
     // In a real application, you would save this to a database.
-    // For now, we'll just simulate a successful booking.
-    console.log('New Booking:', validatedFields.data);
+    console.log('New Reservation:', validatedFields.data);
 
     return {
-      message: `Your booking for ${validatedFields.data.guests} guest(s) on the '${validatedFields.data.tourName}' tour has been successfully submitted!`,
+      message: `Your reservation for ${guests} guest(s) on the '${tourName}' tour has been successfully submitted!`,
       isError: false,
     };
   } catch (error) {
