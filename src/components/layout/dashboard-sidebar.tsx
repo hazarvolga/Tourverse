@@ -58,7 +58,7 @@ export function DashboardSidebar() {
             <Link href="/" className="flex items-center gap-2">
               <Logo className="size-6 shrink-0" />
               <span className="font-bold font-headline group-data-[collapsible=icon]:hidden">
-                TourVerse
+                NextStopTurkey
               </span>
             </Link>
           </Button>

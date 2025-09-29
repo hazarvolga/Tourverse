@@ -56,7 +56,7 @@ export function SiteHeader() {
           <Link href="/" className="flex items-center space-x-2">
             <Logo className="h-8 w-8 text-primary" />
             <span className="font-bold text-lg sm:inline-block font-headline">
-              TourVerse
+              NextStopTurkey
             </span>
           </Link>
         </div>
@@ -95,7 +95,7 @@ export function SiteHeader() {
                   <Link href="/" className="flex items-center space-x-2">
                     <Logo className="h-8 w-8 text-primary" />
                     <span className="font-bold text-xl font-headline">
-                      TourVerse
+                      NextStopTurkey
                     </span>
                   </Link>
                 </div>

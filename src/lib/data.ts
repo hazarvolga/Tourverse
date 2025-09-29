@@ -1,13 +1,13 @@
 import type { Booking, Customer, RevenueData, EngagementData, Tour, Staff, BlogPost } from './types';
 
 export const bookingsData: Booking[] = [
-  { id: 'BK001', customerName: 'Alice Johnson', customerEmail: 'alice@example.com', tourName: 'Parisian Wonders', date: '2024-09-15', status: 'Confirmed', price: 1200 },
-  { id: 'BK002', customerName: 'Bob Williams', customerEmail: 'bob@example.com', tourName: 'Roman Holiday', date: '2024-09-20', status: 'Confirmed', price: 1500 },
-  { id: 'BK003', customerName: 'Charlie Brown', customerEmail: 'charlie@example.com', tourName: 'Tokyo Express', date: '2024-10-05', status: 'Pending', price: 2200 },
-  { id: 'BK004', customerName: 'Diana Prince', customerEmail: 'diana@example.com', tourName: 'Andean Adventure', date: '2024-10-12', status: 'Confirmed', price: 3000 },
-  { id: 'BK005', customerName: 'Ethan Hunt', customerEmail: 'ethan@example.com', tourName: 'Parisian Wonders', date: '2024-08-25', status: 'Cancelled', price: 1150 },
-  { id: 'BK006', customerName: 'Fiona Glenanne', customerEmail: 'fiona@example.com', tourName: 'Roman Holiday', date: '2024-11-01', status: 'Confirmed', price: 1550 },
-  { id: 'BK007', customerName: 'George Costanza', customerEmail: 'george@example.com', tourName: 'Alaskan Expedition', date: '2024-11-15', status: 'Pending', price: 4500 },
+  { id: 'BK001', customerName: 'Alice Johnson', customerEmail: 'alice@example.com', tourName: 'Cappadocia Dream', date: '2024-09-15', status: 'Confirmed', price: 1200 },
+  { id: 'BK002', customerName: 'Bob Williams', customerEmail: 'bob@example.com', tourName: 'Istanbul\'s Legacy', date: '2024-09-20', status: 'Confirmed', price: 1500 },
+  { id: 'BK003', customerName: 'Charlie Brown', customerEmail: 'charlie@example.com', tourName: 'Ephesus & Pamukkale', date: '2024-10-05', status: 'Pending', price: 2200 },
+  { id: 'BK004', customerName: 'Diana Prince', customerEmail: 'diana@example.com', tourName: 'Turquoise Coast Cruise', date: '2024-10-12', status: 'Confirmed', price: 3000 },
+  { id: 'BK005', customerName: 'Ethan Hunt', customerEmail: 'ethan@example.com', tourName: 'Cappadocia Dream', date: '2024-08-25', status: 'Cancelled', price: 1150 },
+  { id: 'BK006', customerName: 'Fiona Glenanne', customerEmail: 'fiona@example.com', tourName: 'Istanbul\'s Legacy', date: '2024-11-01', status: 'Confirmed', price: 1550 },
+  { id: 'BK007', customerName: 'George Costanza', customerEmail: 'george@example.com', tourName: 'Black Sea Wonders', date: '2024-11-15', status: 'Pending', price: 4500 },
 ];
 
 export const customersData: Customer[] = [
@@ -38,12 +38,12 @@ export const engagementData: EngagementData[] = [
 ];
 
 export const toursData: Tour[] = [
-  { id: 'TOUR01', name: 'Parisian Wonders', destination: 'Paris, France', price: 1200, duration: 7, rating: 4.8, category: 'Cultural', imageId: 'feature1' },
-  { id: 'TOUR02', name: 'Roman Holiday', destination: 'Rome, Italy', price: 1500, duration: 7, rating: 4.9, category: 'Cultural', imageId: 'feature2' },
-  { id: 'TOUR03', name: 'Andean Adventure', destination: 'Cusco, Peru', price: 3000, duration: 10, rating: 4.7, category: 'Adventure', imageId: 'feature3' },
-  { id: 'TOUR04', name: 'Tokyo Express', destination: 'Tokyo, Japan', price: 2200, duration: 5, rating: 4.6, category: 'City Break', imageId: 'feature4' },
-  { id: 'TOUR05', name: 'Beach Paradise', destination: 'Maldives', price: 4000, duration: 7, rating: 4.9, category: 'Relaxation', imageId: 'hero' },
-  { id: 'TOUR06', name: 'Mountain Trek', destination: 'Himalayas, Nepal', price: 2800, duration: 14, rating: 4.8, category: 'Adventure', imageId: 'avatar1' },
+  { id: 'TOUR01', name: 'Cappadocia Dream', destination: 'Cappadocia, Turkey', price: 800, duration: 4, rating: 4.9, category: 'Adventure', imageId: 'hero-slide-1' },
+  { id: 'TOUR02', name: 'Istanbul\'s Legacy', destination: 'Istanbul, Turkey', price: 650, duration: 5, rating: 4.8, category: 'Cultural', imageId: 'hero-slide-2' },
+  { id: 'TOUR03', name: 'Ephesus & Pamukkale', destination: 'Izmir, Turkey', price: 950, duration: 3, rating: 4.7, category: 'Cultural', imageId: 'hero-slide-3' },
+  { id: 'TOUR04', name: 'Turquoise Coast Cruise', destination: 'Antalya, Turkey', price: 1500, duration: 7, rating: 4.9, category: 'Relaxation', imageId: 'hero' },
+  { id: 'TOUR05', name: 'Flavors of Anatolia', destination: 'Gaziantep, Turkey', price: 1100, duration: 6, rating: 4.8, category: 'City Break', imageId: 'feature1' },
+  { id: 'TOUR06', name: 'Black Sea Wonders', destination: 'Trabzon, Turkey', price: 1300, duration: 8, rating: 4.6, category: 'Adventure', imageId: 'feature2' },
 ];
 
 export const staffData: Staff[] = [
@@ -55,53 +55,47 @@ export const staffData: Staff[] = [
 
 export const blogPostsData: BlogPost[] = [
   {
-    slug: 'top-10-destinations-for-2025',
-    title: 'Top 10 Must-Visit Destinations for 2025',
-    summary: 'Discover the most exciting and trending travel spots for the upcoming year. From hidden gems to bustling cities, we have got you covered.',
-    author: 'Jane Smith',
+    slug: 'top-5-dishes-to-try-in-istanbul',
+    title: 'Top 5 Dishes You Must Try in Istanbul',
+    summary: 'A culinary journey through the vibrant streets of Istanbul. Discover the flavors that define this historic city.',
+    author: 'Ayla Tan',
     authorAvatarId: 'avatar2',
     date: '2024-07-15',
-    readTime: 8,
-    category: 'Travel Tips',
-    imageId: 'hero-slide-1',
-    content: `<p>The world is vast and full of wonders, and 2025 is the perfect year to explore it. Here is our curated list of the top 10 destinations you should consider for your next adventure:</p>
+    readTime: 6,
+    category: 'Cuisine',
+    imageId: 'feature1',
+    content: `<p>Istanbul is a city that tantalizes all the senses, and its food is no exception. Here are five dishes you absolutely cannot miss on your next trip:</p>
 <br/>
 <ol>
-  <li><strong>Kyoto, Japan:</strong> A seamless blend of ancient tradition and modern life.</li>
-  <li><strong>The Azores, Portugal:</strong> A volcanic archipelago with stunning landscapes.</li>
-  <li><strong>Slovenia:</strong> A green paradise with mountains, lakes, and a charming coastline.</li>
-  <li><strong>Siargao, Philippines:</strong> A surfer's dream with pristine beaches and crystal-clear waters.</li>
-  <li><strong>Medellín, Colombia:</strong> A city of eternal spring, reborn and vibrant.</li>
-  <li><strong>Cairo, Egypt:</strong> The long-awaited Grand Egyptian Museum is finally open.</li>
-  <li><strong>Greenland:</strong> Witness the raw power and beauty of glaciers and icebergs.</li>
-  <li><strong>Oman:</strong> A treasure of the Middle East with rich history and dramatic landscapes.</li>
-  <li><strong>New Orleans, USA:</strong> A melting pot of cultures, music, and incredible food.</li>
-  <li><strong>Kaikoura, New Zealand:</strong> A marine wonderland where mountains meet the sea.</li>
+  <li><strong>Simit:</strong> The quintessential Turkish street food. This sesame-crusted bread ring is perfect for a quick breakfast on the go.</li>
+  <li><strong>Balık Ekmek:</strong> A fresh fish sandwich, typically served right off the boats by the Galata Bridge. Simple, fresh, and delicious.</li>
+  <li><strong>Iskender Kebap:</strong> Thinly sliced lamb doner served over pita bread, smothered in tomato sauce and sizzling butter.</li>
+  <li><strong>Künefe:</strong> A sweet and savory dessert made with cheese baked between two layers of shredded phyllo dough, soaked in syrup.</li>
+  <li><strong>Turkish Breakfast (Kahvaltı):</strong> Not a single dish, but an experience. A spread of cheeses, olives, jams, honey, eggs, and more.</li>
 </ol>
 <br/>
-<p>Each of these destinations offers a unique experience, promising unforgettable memories. Whether you're a seasoned traveler or planning your first big trip, 2025 is the year to make it happen. Start planning today!</p>`
+<p>Each bite tells a story of the city's rich history and diverse culture. Afiyet olsun!</p>`
   },
   {
-    slug: 'how-to-pack-light-for-any-trip',
-    title: 'The Ultimate Guide: How to Pack Light for Any Trip',
-    summary: 'Say goodbye to heavy luggage and checked bag fees. Our guide will teach you the art of packing light without sacrificing the essentials.',
-    author: 'John Doe',
+    slug: 'cappadocia-hot-air-balloons-guide',
+    title: 'A Complete Guide to Cappadocia\'s Hot Air Balloons',
+    summary: 'Everything you need to know to experience the magical hot air balloon rides in Cappadocia, from booking to the best viewpoints.',
+    author: 'Emre Can',
     authorAvatarId: 'avatar1',
     date: '2024-06-28',
-    readTime: 5,
-    category: 'Travel Hacks',
-    imageId: 'feature1',
-    content: `<p>Packing light is a skill that can transform your travel experience. Less luggage means more freedom and less stress. Here are our top tips:</p>
+    readTime: 7,
+    category: 'Travel Tips',
+    imageId: 'hero-slide-1',
+    content: `<p>Floating above the fairy chimneys of Cappadocia in a hot air balloon is a bucket-list experience. Here's how to make it happen:</p>
 <br/>
 <ul>
-  <li><strong>Choose the Right Bag:</strong> A carry-on sized backpack or suitcase is your best friend.</li>
-  <li><strong>Use Packing Cubes:</strong> They are a game-changer for organization and compression.</li>
-  <li><strong>The 5-4-3-2-1 Rule:</strong> For a week-long trip, consider packing 5 tops, 4 bottoms, 3 accessories, 2 pairs of shoes, and 1 swimsuit/special item.</li>
-  <li><strong>Wear Your Heaviest Items:</strong> Wear your bulkiest shoes and jacket on the plane.</li>
-  <li><strong>Solid Toiletries:</strong> Switch to solid shampoo, conditioner, and toothpaste to save space and avoid liquid restrictions.</li>
-  <li><strong>Plan for Laundry:</strong> If you're on a longer trip, plan to do laundry once.</li>
+  <li><strong>Best Time to Go:</strong> April to October offers the best weather conditions for balloon flights.</li>
+  <li><strong>Booking in Advance:</strong> Balloons fill up quickly, especially during peak season. Book your spot at least a month in advance.</li>
+  <li><strong>What to Expect:</strong> You'll be picked up from your hotel before sunrise, watch the balloon inflation, and then enjoy a roughly one-hour flight as the sun comes up.</li>
+  <li><strong>Best Viewing Spots:</strong> If you're not flying, head to Lover's Hill in Göreme for breathtaking views of the balloons at sunrise.</li>
+  <li><strong>Choosing a Company:</strong> Look for reputable companies with experienced pilots and a good safety record.</li>
 </ul>
 <br/>
-<p>Mastering the art of packing light will make your travels more enjoyable and flexible. Give it a try on your next trip!</p>`
+<p>Whether you're in the air or on the ground, the sight of hundreds of balloons coloring the dawn sky is a memory that will last a lifetime.</p>`
   },
 ];

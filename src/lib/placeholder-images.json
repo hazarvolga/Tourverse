@@ -2,51 +2,51 @@
   "placeholderImages": [
     {
       "id": "hero-slide-1",
-      "description": "Hero slide image of a beautiful travel destination",
-      "imageUrl": "https://images.unsplash.com/photo-1686509185884-a18ac5e9b690?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dHJhdmVsJTIwbGFuZHNjYXBlfGVufDB8fHx8MTc1ODc4MDc2MXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "travel landscape"
+      "description": "Hot air balloons over Cappadocia",
+      "imageUrl": "https://images.unsplash.com/photo-1589903939985-5a5ead561335?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjYXBwYWRvY2lhJTIwYmFsbG9vbnN8ZW58MHx8fHwxNzU4ODgyMTcyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cappadocia balloons"
     },
     {
       "id": "hero-slide-2",
-      "description": "Hero slide image showing adventure",
-      "imageUrl": "https://images.unsplash.com/photo-1677696254149-0879c68e8a09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxhZHZlbnR1cmUlMjBoaWtpbmd8ZW58MHx8fHwxNzU4ODAyOTIxfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "adventure hiking"
+      "description": "The Blue Mosque in Istanbul",
+      "imageUrl": "https://images.unsplash.com/photo-1590314143399-923543b44160?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpc3RhbmJ1bCUyMGJsdWUlMjBtb3NxdWV8ZW58MHx8fHwxNzU4ODgyMTcyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "istanbul blue mosque"
     },
     {
       "id": "hero-slide-3",
-      "description": "Hero slide image showing cultural experience",
-      "imageUrl": "https://images.unsplash.com/photo-1593249992832-c8f5fc8f2f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjdWx0dXJlJTIwZmVzdGl2YWx8ZW58MHx8fHwxNzU4ODAyOTIxfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "culture festival"
+      "description": "The ancient ruins of Ephesus",
+      "imageUrl": "https://images.unsplash.com/photo-1603584827824-25d1985392d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlcGhlc3VzJTIwcnVpbnN8ZW58MHx8fHwxNzU4ODgyMTcyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ephesus ruins"
     },
     {
       "id": "hero",
-      "description": "A stunning mountain landscape for the hero section",
-      "imageUrl": "https://images.unsplash.com/photo-1725381914286-5974301a8ab6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxsYW5kc2NhcGUlMjBtb3VudGFpbnN8ZW58MHx8fHwxNzU4NzM3MjkyfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "landscape mountains"
+      "description": "A beautiful beach in Kas, Antalya",
+      "imageUrl": "https://images.unsplash.com/photo-1619855325988-82a468d6f5b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxrYXMlMjBhbnRhbHlhJTIwYmVhY2h8ZW58MHx8fHwxNzU4ODgyMTcyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "kas antalya beach"
     },
     {
       "id": "feature1",
-      "description": "Image for the interactive tour planning feature",
-      "imageUrl": "https://images.unsplash.com/photo-1547649490-7b9f1b424554?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtYXAlMjB0cmF2ZWx8ZW58MHx8fHwxNzU4NzA2NzI3fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "map travel"
+      "description": "Colorful lamps in the Grand Bazaar, Istanbul",
+      "imageUrl": "https://images.unsplash.com/photo-1546738903-81a5a07f3116?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxncmFuZCUyMGJhemFhciUyMGlzdGFuYnVsfGVufDB8fHx8MTc1ODg4MjE3Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "grand bazaar"
     },
     {
       "id": "feature2",
-      "description": "Image for the booking management feature",
-      "imageUrl": "https://images.unsplash.com/photo-1642618598178-52eb00dc544d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjYWxlbmRhciUyMHNjaGVkdWxlfGVufDB8fHx8MTc1ODcyMzI1M3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "calendar schedule"
+      "description": "The travertines of Pamukkale",
+      "imageUrl": "https://images.unsplash.com/photo-1582672074251-c0757d54d924?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwYW11a2thbGUlMjB0dXJrZXl8ZW58MHx8fHwxNzU4ODgyMTcyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pamukkale turkey"
     },
     {
       "id": "feature3",
-      "description": "Image for the AI-powered itinerary feature",
-      "imageUrl": "https://images.unsplash.com/photo-1510906594845-bc082582c8cc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0ZWNobm9sb2d5JTIwYWJzdHJhY3R8ZW58MHx8fHwxNzU4NzE1OTY1fDA&ixlibrb-4.1.0&q=80&w=1080",
-      "imageHint": "technology abstract"
+      "description": "A whirling dervish performing",
+      "imageUrl": "https://images.unsplash.com/photo-1617950587719-06535a331160?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3aGlybGluZyUyMGRlcnZpc2glMjB0dXJrZXl8ZW58MHx8fHwxNzU4ODgyMTcyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "whirling dervish"
     },
     {
       "id": "feature4",
-      "description": "Image for the real-time analytics feature",
-      "imageUrl": "https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxkYXRhJTIwY2hhcnR8ZW58MHx8fHwxNzU4NjkyNDA3fDA&ixlib.rb-4.1.0&q=80&w=1080",
-      "imageHint": "data chart"
+      "description": "A view of the Bosphorus in Istanbul",
+      "imageUrl": "https://images.unsplash.com/photo-1533130097748-5a2327424a12?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxib3NwaG9ydXMlMjBpc3RhbmJ1bHxlbnwwfHx8fDE3NTg4ODIxNzJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "bosphorus istanbul"
     },
     {
       "id": "avatar1",

@@ -28,7 +28,7 @@ export function SiteFooter() {
             <Link href="/" className="flex items-center space-x-2">
               <Logo className="h-8 w-8 text-primary" />
               <span className="font-bold text-xl font-headline">
-                TourVerse
+                NextStopTurkey
               </span>
             </Link>
             <p className="text-muted-foreground text-sm">
@@ -65,7 +65,7 @@ export function SiteFooter() {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-border/40 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} TourVerse. All rights reserved.
+            &copy; {new Date().getFullYear()} NextStopTurkey. All rights reserved.
           </p>
           <div className="flex items-center space-x-4">
             {socialLinks.map((social, idx) => (

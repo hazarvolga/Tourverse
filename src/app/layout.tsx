@@ -17,8 +17,8 @@ const fontHeadline = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: 'TourVerse',
-  description: 'A comprehensive tour management platform.',
+  title: 'NextStopTurkey',
+  description: 'Discover the beauty of Turkey with our exclusive tours.',
 };
 
 export default function RootLayout({
