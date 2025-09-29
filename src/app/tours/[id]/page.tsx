@@ -13,14 +13,15 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { Star, MapPin, Clock, Users, Sun, Moon, Building, Home, Tent, Info } from 'lucide-react';
-import { notFound } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 import { formatCurrency } from '@/lib/utils';
 import { Separator } from '@/components/ui/separator';
 
 type TourType = 'one-day' | 'multi-day';
 type AccommodationType = 'hotel' | 'guesthouse' | 'camping' | 'none';
 
-export default function TourDetailPage({ params }: { params: { id: string } }) {
+export default function TourDetailPage() {
+  const params = useParams();
   const tour = toursData.find((t) => t.id === params.id);
   const image = tour ? PlaceHolderImages.find((img) => img.id === tour.imageId) : undefined;
 
@@ -166,4 +167,3 @@ export default function TourDetailPage({ params }: { params: { id: string } }) {
     </div>
   );
 }
-
