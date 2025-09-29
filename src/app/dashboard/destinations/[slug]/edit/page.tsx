@@ -19,10 +19,11 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 // This is a placeholder. In a real app, you'd fetch this data based on the slug.
 const getDestinationData = (slug: string) => {
-    const unslugify = (slug: string) => slug.replace(/-/g, ' ');
-    const destinationName = unslugify(slug);
+    const slugify = (text: string) => text.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 
-    const tour = toursData.find(t => t.destination.toLowerCase().includes(destinationName));
+    // Find the tour whose destination, when slugified, matches the slug from the URL
+    const tour = toursData.find(t => slugify(t.destination) === slug);
+
     if (!tour) return null;
 
     const image = PlaceHolderImages.find(p => p.id === tour.imageId);
