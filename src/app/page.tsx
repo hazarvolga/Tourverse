@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { DestinationsSection } from '@/components/destinations/destinations-section';
 import { NewsletterCta } from '@/components/cta/newsletter-cta';
+import { LogosCarousel } from '@/components/logos/logos-carousel';
 
 export default function Home() {
   const featuredTours = toursData.slice(0, 5); // Example: Show first 5 tours
@@ -52,6 +53,7 @@ export default function Home() {
         <DestinationsSection />
       </div>
       <NewsletterCta />
+      <LogosCarousel />
     </>
   );
 }
