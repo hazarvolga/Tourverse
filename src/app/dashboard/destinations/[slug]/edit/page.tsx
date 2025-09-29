@@ -77,31 +77,38 @@ export default function EditDestinationPage({ params }: { params: { slug: string
             Modify the content below and click save.
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="space-y-2">
-            <Label htmlFor="dest-name">Destination Name</Label>
-            <Input id="dest-name" defaultValue={destination.name} />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="dest-description">Description</Label>
-            <Textarea
-              id="dest-description"
-              defaultValue={destination.description}
-              className="min-h-32"
-            />
-          </div>
-          <div className="space-y-4">
-            <Label>Featured Image</Label>
-            <div className="relative h-64 w-full max-w-lg rounded-md overflow-hidden border">
-                 <Image src={destination.image} alt={destination.name} fill className="object-cover" data-ai-hint={destination.imageHint}/>
+        <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* Left Column for Form Fields */}
+                <div className="md:col-span-2 space-y-6">
+                    <div className="space-y-2">
+                        <Label htmlFor="dest-name">Destination Name</Label>
+                        <Input id="dest-name" defaultValue={destination.name} />
+                    </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="dest-description">Description</Label>
+                        <Textarea
+                        id="dest-description"
+                        defaultValue={destination.description}
+                        className="min-h-48"
+                        />
+                    </div>
+                </div>
+                
+                {/* Right Column for Image */}
+                <div className="md:col-span-1 space-y-4">
+                    <Label>Featured Image</Label>
+                    <div className="relative aspect-[4/3] w-full rounded-md overflow-hidden border">
+                        <Image src={destination.image} alt={destination.name} fill className="object-cover" data-ai-hint={destination.imageHint}/>
+                    </div>
+                    <Button variant="outline" className="w-full">
+                        <Upload className="mr-2 h-4 w-4" />
+                        Change Image
+                    </Button>
+                </div>
             </div>
-             <Button variant="outline">
-                <Upload className="mr-2 h-4 w-4" />
-                Change Image
-            </Button>
-          </div>
         </CardContent>
-        <CardFooter>
+        <CardFooter className="justify-end">
           <Button>Save Changes</Button>
         </CardFooter>
       </Card>
