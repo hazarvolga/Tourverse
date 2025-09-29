@@ -3,76 +3,26 @@
 'use client';
 
 import * as React from 'react';
-import { useState, useActionState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { toursData } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
-import { Star, MapPin, Clock, Users, Sun, Moon, Building, Home, Tent, Info, CheckCircle, AlertTriangle, CreditCard, CalendarCheck } from 'lucide-react';
-import { notFound, useParams } from 'next/navigation';
+import { Star, MapPin, Moon, Sun, Building, Home, Tent, CalendarCheck, ArrowRight } from 'lucide-react';
+import { notFound, useParams, useRouter } from 'next/navigation';
 import { formatCurrency } from '@/lib/utils';
 import { Separator } from '@/components/ui/separator';
-import { useFormStatus } from 'react-dom';
-import { bookTourAction, type BookTourFormState } from '@/actions/book-tour-action';
-import { useToast } from '@/hooks/use-toast';
-import { cn } from '@/lib/utils';
-
 
 type TourType = 'one-day' | 'multi-day';
 type AccommodationType = 'hotel' | 'guesthouse' | 'camping';
 
-const initialState: BookTourFormState = {
-  message: '',
-  isError: false,
-};
-
-function SubmitButton({ variant }: { variant: 'book' | 'pay' }) {
-    const { pending } = useFormStatus();
-
-    const icons = {
-        book: <CalendarCheck />,
-        pay: <CreditCard />,
-    }
-
-    const text = {
-        book: 'Reserve Now',
-        pay: 'Pay Now',
-    }
-
-    const pendingText = {
-        book: 'Reserving...',
-        pay: 'Processing...',
-    }
-
-    return (
-        <Button 
-            type="submit" 
-            size="lg" 
-            className="w-full" 
-            name="action"
-            value={variant}
-            disabled={pending}
-        >
-            {pending ? (
-                <>
-                    {icons[variant]} {pendingText[variant]}
-                </>
-            ) : (
-                <>
-                    {icons[variant]} {text[variant]}
-                </>
-            )}
-        </Button>
-    )
-}
-
 export default function TourDetailPage() {
   const params = useParams();
+  const router = useRouter();
   const tour = toursData.find((t) => t.id === params.id);
   const image = tour ? PlaceHolderImages.find((img) => img.id === tour.imageId) : undefined;
 
@@ -80,22 +30,21 @@ export default function TourDetailPage() {
   const [accommodation, setAccommodation] = useState<AccommodationType>('hotel');
   const [guests, setGuests] = useState(1);
 
-  const [state, formAction] = useActionState(bookTourAction, initialState);
-  const { toast } = useToast();
-
-  React.useEffect(() => {
-    if (state.message) {
-      toast({
-        title: state.isError ? 'Action Failed' : 'Action Successful!',
-        description: state.message,
-        variant: state.isError ? 'destructive' : 'default',
-      });
-    }
-  }, [state, toast]);
-
-
   if (!tour || !image) {
     notFound();
+  }
+
+  const handleBooking = () => {
+    const queryParams = new URLSearchParams({
+        tourId: tour.id,
+        guests: guests.toString(),
+        tourType: tourType,
+    });
+
+    if (tourType === 'multi-day') {
+        queryParams.set('accommodation', accommodation);
+    }
+    router.push(`/checkout?${queryParams.toString()}`);
   }
 
   return (
@@ -151,11 +100,7 @@ export default function TourDetailPage() {
               <CardTitle>Book Your Adventure</CardTitle>
               <CardDescription>Select your options and get ready for an unforgettable trip.</CardDescription>
             </CardHeader>
-            <form action={formAction}>
-              <CardContent className="space-y-6">
-                <input type="hidden" name="tourId" value={tour.id} />
-                <input type="hidden" name="tourName" value={tour.name} />
-
+            <CardContent className="space-y-6">
                 <div className="flex justify-between items-baseline">
                     <span className="text-muted-foreground">From</span>
                     <p className="text-3xl font-bold text-primary">{formatCurrency(tour.price)}</p>
@@ -163,11 +108,9 @@ export default function TourDetailPage() {
                 
                 <Separator />
                 
-                {/* Tour Type Selection */}
                 <div className="space-y-2">
                     <Label className="text-base font-semibold">Select Tour Type</Label>
                     <RadioGroup
-                        name="tourType"
                         value={tourType}
                         onValueChange={(value: TourType) => setTourType(value)}
                         className="grid grid-cols-2 gap-4"
@@ -185,25 +128,40 @@ export default function TourDetailPage() {
                     </RadioGroup>
                 </div>
 
-                {/* Accommodation - Conditional */}
                 {tourType === 'multi-day' && (
                   <div className="space-y-2 animate-in fade-in-0 duration-500">
-                    <Label htmlFor="accommodation" className="text-base font-semibold">Accommodation Preferences</Label>
-                     <p className="text-sm text-muted-foreground">This option is only available for multi-day tours.</p>
-                    <Select name="accommodation" onValueChange={(value: AccommodationType) => setAccommodation(value)} defaultValue={accommodation}>
-                      <SelectTrigger id="accommodation">
-                        <SelectValue placeholder="Select accommodation..." />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="hotel"><div className="flex items-center gap-2"><Building className="h-4 w-4" /> Hotel (Comfort)</div></SelectItem>
-                        <SelectItem value="guesthouse"><div className="flex items-center gap-2"><Home className="h-4 w-4" /> Guesthouse (Local Experience)</div></SelectItem>
-                        <SelectItem value="camping"><div className="flex items-center gap-2"><Tent className="h-4 w-4" /> Camping (Adventure)</div></SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <Label htmlFor="accommodation" className="text-base font-semibold">Accommodation</Label>
+                     <p className="text-sm text-muted-foreground">Optional for multi-day tours.</p>
+                     <RadioGroup
+                        value={accommodation}
+                        onValueChange={(value: AccommodationType) => setAccommodation(value)}
+                        className="grid grid-cols-3 gap-2"
+                    >
+                         <div>
+                            <RadioGroupItem value="hotel" id="hotel" className="sr-only peer" />
+                            <Label htmlFor="hotel" className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-3 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary">
+                               <Building className="mb-2 h-5 w-5" />
+                               Hotel
+                            </Label>
+                        </div>
+                        <div>
+                            <RadioGroupItem value="guesthouse" id="guesthouse" className="sr-only peer" />
+                            <Label htmlFor="guesthouse" className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-3 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary">
+                               <Home className="mb-2 h-5 w-5" />
+                               Guesthouse
+                            </Label>
+                        </div>
+                         <div>
+                            <RadioGroupItem value="camping" id="camping" className="sr-only peer" />
+                            <Label htmlFor="camping" className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-3 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary">
+                               <Tent className="mb-2 h-5 w-5" />
+                               Camping
+                            </Label>
+                        </div>
+                    </RadioGroup>
                   </div>
                 )}
                 
-                {/* Guests */}
                  <div className="space-y-2">
                     <Label htmlFor="guests" className="text-base font-semibold">Number of Guests</Label>
                      <Input 
@@ -217,13 +175,11 @@ export default function TourDetailPage() {
                         className="text-base"
                     />
                 </div>
-
-              </CardContent>
-              <CardFooter className="flex flex-col gap-4">
-                 <SubmitButton variant="pay" />
-                 <SubmitButton variant="book" />
-              </CardFooter>
-            </form>
+                
+                <Button onClick={handleBooking} size="lg" className="w-full">
+                    Book Now <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+            </CardContent>
           </Card>
         </div>
       </div>

@@ -1,4 +1,5 @@
 
+
 'use server';
 
 import { z } from 'zod';
@@ -10,6 +11,8 @@ const BookTourSchema = z.object({
   tourType: z.enum(['one-day', 'multi-day']),
   guests: z.coerce.number().int().min(1, 'You must book for at least 1 guest.'),
   accommodation: z.enum(['hotel', 'guesthouse', 'camping', 'none']).optional(),
+  customerName: z.string().min(2, "Name is required."),
+  customerEmail: z.string().email("Invalid email address."),
   action: z.enum(['book', 'pay']),
 });
 
@@ -23,39 +26,31 @@ export async function bookTourAction(
   formData: FormData
 ): Promise<BookTourFormState> {
   
-  const rawFormData = {
-    tourId: formData.get('tourId'),
-    tourName: formData.get('tourName'),
-    tourType: formData.get('tourType'),
-    guests: formData.get('guests'),
-    accommodation: formData.get('tourType') === 'multi-day' ? formData.get('accommodation') : 'none',
-    action: formData.get('action'),
-  };
+  const rawFormData = Object.fromEntries(formData.entries());
 
   const validatedFields = BookTourSchema.safeParse(rawFormData);
 
   if (!validatedFields.success) {
     console.log(validatedFields.error.flatten().fieldErrors);
+    const firstError = Object.values(validatedFields.error.flatten().fieldErrors)[0]?.[0];
     return {
-      message: validatedFields.error.flatten().fieldErrors.guests?.[0] || 'Invalid data provided.',
+      message: firstError || 'Invalid data provided.',
       isError: true,
     };
   }
   
-  const { action, guests, tourName } = validatedFields.data;
+  const { action, guests, tourName, customerName } = validatedFields.data;
 
   if (action === 'pay') {
-      // In a real application, you would save booking details to the database before redirecting.
       console.log('Redirecting to payment for:', validatedFields.data);
       redirect('/payment');
   }
   
   try {
-    // In a real application, you would save this to a database.
     console.log('New Reservation:', validatedFields.data);
 
     return {
-      message: `Your reservation for ${guests} guest(s) on the '${tourName}' tour has been successfully submitted!`,
+      message: `Dear ${customerName}, your reservation for ${guests} guest(s) on the '${tourName}' tour has been successfully submitted!`,
       isError: false,
     };
   } catch (error) {
