@@ -22,6 +22,7 @@ import { MoreHorizontal, Edit, Trash2 } from 'lucide-react';
 import { toursData } from '@/lib/data';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import Link from 'next/link';
 
 type Destination = {
     name: string;
@@ -52,6 +53,8 @@ export function DestinationsTable() {
     (dest) =>
       dest.name.toLowerCase().includes(filter.toLowerCase())
   );
+
+  const slugify = (text: string) => text.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 
   return (
     <div className="w-full">
@@ -93,9 +96,11 @@ export function DestinationsTable() {
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem>
-                          <Edit className="mr-2 h-4 w-4" />
-                          Edit Destination
+                        <DropdownMenuItem asChild>
+                          <Link href={`/dashboard/destinations/${slugify(dest.name)}/edit`}>
+                            <Edit className="mr-2 h-4 w-4" />
+                            Edit Destination
+                          </Link>
                         </DropdownMenuItem>
                         <DropdownMenuItem className="text-destructive">
                           <Trash2 className="mr-2 h-4 w-4" />
