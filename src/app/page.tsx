@@ -6,6 +6,7 @@ import { toursData } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { DestinationsSection } from '@/components/destinations/destinations-section';
+import { NewsletterCta } from '@/components/cta/newsletter-cta';
 
 export default function Home() {
   const featuredTours = toursData.slice(0, 5); // Example: Show first 5 tours
@@ -50,6 +51,7 @@ export default function Home() {
       <div id="destinations" className="scroll-mt-20">
         <DestinationsSection />
       </div>
+      <NewsletterCta />
     </>
   );
 }
