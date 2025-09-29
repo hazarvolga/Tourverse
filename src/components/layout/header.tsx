@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/icons';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Globe, MapPin, Info, Twitter, Facebook, Instagram, Home } from 'lucide-react';
+import { Menu, Globe, MapPin, Info, Twitter, Facebook, Instagram, Home, BookText } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
 const socialLinks = [
@@ -22,6 +22,7 @@ export function SiteHeader() {
     { href: isHomePage ? '#tours' : '/tours', label: 'Tours', icon: MapPin },
     { href: isHomePage ? '#destinations' : '/destinations', label: 'Destinations', icon: Globe },
     { href: '/about', label: 'About Us', icon: Info },
+    { href: '/blog', label: 'Blog', icon: BookText },
   ];
 
   return (

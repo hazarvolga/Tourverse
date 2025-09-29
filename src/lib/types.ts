@@ -50,3 +50,16 @@ export type Staff = {
   rating: number;
   onDuty: boolean;
 };
+
+export type BlogPost = {
+  slug: string;
+  title: string;
+  summary: string;
+  author: string;
+  authorAvatarId: string;
+  date: string;
+  readTime: number; // in minutes
+  category: string;
+  imageId: string;
+  content: string; // Markdown or HTML content
+};
