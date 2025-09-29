@@ -13,6 +13,7 @@ const BookTourSchema = z.object({
   accommodation: z.enum(['hotel', 'guesthouse', 'camping', 'none']).optional(),
   customerName: z.string().min(2, "Name is required."),
   customerEmail: z.string().email("Invalid email address."),
+  customerPhone: z.string().optional(),
   action: z.enum(['book', 'pay']),
 });
 
@@ -43,7 +44,8 @@ export async function bookTourAction(
 
   if (action === 'pay') {
       console.log('Redirecting to payment for:', validatedFields.data);
-      redirect('/payment');
+      // This is a simplified message. In a real app, you might create a pending payment record.
+      return redirect('/payment');
   }
   
   try {

@@ -19,7 +19,7 @@ import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { formatCurrency } from '@/lib/utils';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { AlertTriangle, ArrowLeft, CalendarCheck, CheckCircle, CreditCard, User } from 'lucide-react';
+import { AlertTriangle, ArrowLeft, CalendarCheck, CheckCircle, CreditCard, Phone, User } from 'lucide-react';
 import Link from 'next/link';
 
 const initialState: BookTourFormState = {
@@ -110,7 +110,7 @@ export default function CheckoutPage() {
     
     const totalPrice = tour.price * parseInt(guests);
 
-    if (!state.isError && state.message) {
+    if (!state.isError && state.message && !state.message.includes('Redirecting to payment')) {
         return (
             <div className="container mx-auto max-w-2xl py-12 px-4 text-center">
                  <CheckCircle className="mx-auto h-16 w-16 text-green-500" />
@@ -162,6 +162,10 @@ export default function CheckoutPage() {
                                 <div className="space-y-2">
                                     <Label htmlFor="customerEmail">Email Address</Label>
                                     <Input id="customerEmail" name="customerEmail" type="email" placeholder="you@example.com" required />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="customerPhone">Phone Number</Label>
+                                    <Input id="customerPhone" name="customerPhone" type="tel" placeholder="(555) 555-5555" />
                                 </div>
                             </CardContent>
                              <CardFooter className="flex flex-col gap-4 items-stretch">
