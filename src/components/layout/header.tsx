@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/icons';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Globe, Users, MapPin, Info } from 'lucide-react';
+import { Menu, Globe, Users, MapPin, Info, Twitter, Facebook, Instagram } from 'lucide-react';
 
 const navLinks = [
   { href: '/tours', label: 'Tours', icon: MapPin },
@@ -10,9 +10,39 @@ const navLinks = [
   { href: '/about', label: 'About Us', icon: Info },
 ];
 
+const socialLinks = [
+  { icon: Twitter, href: '#' },
+  { icon: Facebook, href: '#' },
+  { icon: Instagram, href: '#' },
+];
+
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      {/* Top Bar */}
+      <div className="bg-muted/30">
+        <div className="container flex h-10 items-center justify-between">
+            <div className="flex items-center space-x-3">
+                 {socialLinks.map((social, idx) => (
+                    <Link key={idx} href={social.href} className="text-muted-foreground hover:text-primary transition-colors">
+                        <social.icon className="h-4 w-4" />
+                        <span className="sr-only">Social Link</span>
+                    </Link>
+                ))}
+            </div>
+            <div className="flex items-center space-x-2">
+                <Button variant="ghost" size="sm" asChild>
+                    <Link href="/login">Login</Link>
+                </Button>
+                <span className="text-muted-foreground/50">|</span>
+                <Button variant="ghost" size="sm" asChild>
+                    <Link href="/signup">Sign Up</Link>
+                </Button>
+            </div>
+        </div>
+      </div>
+      
+      {/* Main Header */}
       <div className="container flex h-16 items-center">
         <div className="mr-auto flex items-center">
           <Link href="/" className="flex items-center space-x-2">
