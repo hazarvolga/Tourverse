@@ -39,3 +39,14 @@ export type Tour = {
   category: 'Adventure' | 'Cultural' | 'Relaxation' | 'City Break';
   imageId: string;
 };
+
+export type Staff = {
+  id: string;
+  name: string;
+  email: string;
+  role: 'Guide' | 'Tour Manager' | 'Support' | 'Admin';
+  avatarId: string;
+  assignedTours: number;
+  rating: number;
+  onDuty: boolean;
+};

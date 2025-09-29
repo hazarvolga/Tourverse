@@ -1,4 +1,4 @@
-import type { Booking, Customer, RevenueData, EngagementData, Tour } from './types';
+import type { Booking, Customer, RevenueData, EngagementData, Tour, Staff } from './types';
 
 export const bookingsData: Booking[] = [
   { id: 'BK001', customerName: 'Alice Johnson', customerEmail: 'alice@example.com', tourName: 'Parisian Wonders', date: '2024-09-15', status: 'Confirmed', price: 1200 },
@@ -44,4 +44,11 @@ export const toursData: Tour[] = [
   { id: 'TOUR04', name: 'Tokyo Express', destination: 'Tokyo, Japan', price: 2200, duration: 5, rating: 4.6, category: 'City Break', imageId: 'feature4' },
   { id: 'TOUR05', name: 'Beach Paradise', destination: 'Maldives', price: 4000, duration: 7, rating: 4.9, category: 'Relaxation', imageId: 'hero' },
   { id: 'TOUR06', name: 'Mountain Trek', destination: 'Himalayas, Nepal', price: 2800, duration: 14, rating: 4.8, category: 'Adventure', imageId: 'avatar1' },
+];
+
+export const staffData: Staff[] = [
+    { id: 'STAFF01', name: 'John Doe', email: 'john.doe@tourverse.com', role: 'Guide', avatarId: 'avatar1', assignedTours: 5, rating: 4.8, onDuty: true },
+    { id: 'STAFF02', name: 'Jane Smith', email: 'jane.smith@tourverse.com', role: 'Tour Manager', avatarId: 'avatar2', assignedTours: 10, rating: 4.9, onDuty: true },
+    { id: 'STAFF03', name: 'Peter Jones', email: 'peter.jones@tourverse.com', role: 'Guide', avatarId: 'avatar3', assignedTours: 3, rating: 4.7, onDuty: false },
+    { id: 'STAFF04', name: 'Mary Johnson', email: 'mary.j@tourverse.com', role: 'Support', avatarId: 'avatar4', assignedTours: 0, rating: 5.0, onDuty: true },
 ];
