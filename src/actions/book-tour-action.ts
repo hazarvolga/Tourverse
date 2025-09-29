@@ -2,6 +2,7 @@
 'use server';
 
 import { z } from 'zod';
+import { redirect } from 'next/navigation';
 
 const BookTourSchema = z.object({
   tourId: z.string().min(1),
@@ -41,18 +42,15 @@ export async function bookTourAction(
     };
   }
   
+  const { action, guests, tourName } = validatedFields.data;
+
+  if (action === 'pay') {
+      // In a real application, you would save booking details to the database before redirecting.
+      console.log('Redirecting to payment for:', validatedFields.data);
+      redirect('/payment');
+  }
+  
   try {
-    const { action, guests, tourName } = validatedFields.data;
-
-    if (action === 'pay') {
-        // In a real application, you would redirect to a payment gateway.
-        console.log('Redirecting to payment for:', validatedFields.data);
-        return {
-            message: `Redirecting to payment for your booking of ${guests} guest(s) on the '${tourName}' tour!`,
-            isError: false,
-        };
-    }
-
     // In a real application, you would save this to a database.
     console.log('New Reservation:', validatedFields.data);
 
