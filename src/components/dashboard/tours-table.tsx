@@ -26,6 +26,7 @@ import { cn } from '@/lib/utils';
 import { formatCurrency } from '@/lib/utils';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import Link from 'next/link';
 
 const badgeColors: { [key: string]: string } = {
     Adventure: 'bg-accent text-accent-foreground',
@@ -100,9 +101,11 @@ export function ToursTable() {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                            <DropdownMenuItem>
-                                <Edit className="mr-2 h-4 w-4" />
-                                Edit Tour
+                            <DropdownMenuItem asChild>
+                                <Link href={`/dashboard/tours/${tour.id}/edit`}>
+                                    <Edit className="mr-2 h-4 w-4" />
+                                    Edit Tour
+                                </Link>
                             </DropdownMenuItem>
                             <DropdownMenuItem className="text-destructive">
                                 <Trash2 className="mr-2 h-4 w-4" />
