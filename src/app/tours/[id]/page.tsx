@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import * as React from 'react';
@@ -12,13 +13,32 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
-import { Star, MapPin, Clock, Users, Sun, Moon, Building, Home, Tent, Info } from 'lucide-react';
+import { Star, MapPin, Clock, Users, Sun, Moon, Building, Home, Tent, Info, CheckCircle, AlertTriangle } from 'lucide-react';
 import { notFound, useParams } from 'next/navigation';
 import { formatCurrency } from '@/lib/utils';
 import { Separator } from '@/components/ui/separator';
+import { useFormState, useFormStatus } from 'react-dom';
+import { bookTourAction, type BookTourFormState } from '@/actions/book-tour-action';
+import { useToast } from '@/hooks/use-toast';
+import { cn } from '@/lib/utils';
+
 
 type TourType = 'one-day' | 'multi-day';
-type AccommodationType = 'hotel' | 'guesthouse' | 'camping' | 'none';
+type AccommodationType = 'hotel' | 'guesthouse' | 'camping';
+
+const initialState: BookTourFormState = {
+  message: '',
+  isError: false,
+};
+
+function SubmitButton() {
+    const { pending } = useFormStatus();
+    return (
+        <Button type="submit" size="lg" className="w-full" disabled={pending}>
+            {pending ? 'Booking...' : 'Book Now'}
+        </Button>
+    )
+}
 
 export default function TourDetailPage() {
   const params = useParams();
@@ -26,18 +46,26 @@ export default function TourDetailPage() {
   const image = tour ? PlaceHolderImages.find((img) => img.id === tour.imageId) : undefined;
 
   const [tourType, setTourType] = useState<TourType>('one-day');
-  const [accommodation, setAccommodation] = useState<AccommodationType>('none');
+  const [accommodation, setAccommodation] = useState<AccommodationType>('hotel');
   const [guests, setGuests] = useState(1);
+
+  const [state, formAction] = useFormState(bookTourAction, initialState);
+  const { toast } = useToast();
+
+  React.useEffect(() => {
+    if (state.message) {
+      toast({
+        title: state.isError ? 'Booking Failed' : 'Booking Successful!',
+        description: state.message,
+        variant: state.isError ? 'destructive' : 'default',
+      });
+    }
+  }, [state, toast]);
+
 
   if (!tour || !image) {
     notFound();
   }
-
-  const handleBooking = (e: React.FormEvent) => {
-    e.preventDefault();
-    // In a real app, this would handle the booking logic
-    alert(`Booking submitted!\nTour: ${tour.name}\nType: ${tourType}\nGuests: ${guests}\nAccommodation: ${tourType === 'multi-day' ? accommodation : 'N/A'}`);
-  };
 
   return (
     <div className="container mx-auto px-4 md:px-6 py-12">
@@ -92,8 +120,11 @@ export default function TourDetailPage() {
               <CardTitle>Book Your Adventure</CardTitle>
               <CardDescription>Select your options and get ready for an unforgettable trip.</CardDescription>
             </CardHeader>
-            <form onSubmit={handleBooking}>
+            <form action={formAction}>
               <CardContent className="space-y-6">
+                <input type="hidden" name="tourId" value={tour.id} />
+                <input type="hidden" name="tourName" value={tour.name} />
+
                 <div className="flex justify-between items-baseline">
                     <span className="text-muted-foreground">From</span>
                     <p className="text-3xl font-bold text-primary">{formatCurrency(tour.price)}</p>
@@ -105,6 +136,7 @@ export default function TourDetailPage() {
                 <div className="space-y-2">
                     <Label className="text-base font-semibold">Select Tour Type</Label>
                     <RadioGroup
+                        name="tourType"
                         value={tourType}
                         onValueChange={(value: TourType) => setTourType(value)}
                         className="grid grid-cols-2 gap-4"
@@ -127,7 +159,7 @@ export default function TourDetailPage() {
                   <div className="space-y-2 animate-in fade-in-0 duration-500">
                     <Label htmlFor="accommodation" className="text-base font-semibold">Accommodation Preferences</Label>
                      <p className="text-sm text-muted-foreground">This option is only available for multi-day tours.</p>
-                    <Select onValueChange={(value: AccommodationType) => setAccommodation(value)} defaultValue="hotel">
+                    <Select name="accommodation" onValueChange={(value: AccommodationType) => setAccommodation(value)} defaultValue={accommodation}>
                       <SelectTrigger id="accommodation">
                         <SelectValue placeholder="Select accommodation..." />
                       </SelectTrigger>
@@ -145,6 +177,7 @@ export default function TourDetailPage() {
                     <Label htmlFor="guests" className="text-base font-semibold">Number of Guests</Label>
                      <Input 
                         id="guests" 
+                        name="guests"
                         type="number" 
                         min="1" 
                         max="10" 
@@ -155,10 +188,8 @@ export default function TourDetailPage() {
                 </div>
 
               </CardContent>
-              <CardFooter>
-                <Button type="submit" size="lg" className="w-full">
-                  Book Now
-                </Button>
+              <CardFooter className="flex flex-col gap-4">
+                <SubmitButton />
               </CardFooter>
             </form>
           </Card>
