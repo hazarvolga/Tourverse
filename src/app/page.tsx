@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <div className="container mx-auto px-4 md:px-6 py-12 md:py-20">
+      <section id="tours" className="container mx-auto px-4 md:px-6 py-12 md:py-20 scroll-mt-20">
         <header className="mb-12 text-center">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Find Your Next Adventure</h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -45,9 +45,11 @@ export default function Home() {
              </Button>
           </div>
         </main>
-      </div>
+      </section>
       <ParallaxCta />
-      <DestinationsSection />
+      <div id="destinations" className="scroll-mt-20">
+        <DestinationsSection />
+      </div>
     </>
   );
 }

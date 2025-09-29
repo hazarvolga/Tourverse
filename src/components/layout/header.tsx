@@ -1,14 +1,11 @@
+'use client';
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/icons';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Globe, Users, MapPin, Info, Twitter, Facebook, Instagram } from 'lucide-react';
-
-const navLinks = [
-  { href: '/tours', label: 'Tours', icon: MapPin },
-  { href: '/destinations', label: 'Destinations', icon: Globe },
-  { href: '/about', label: 'About Us', icon: Info },
-];
+import { Menu, Globe, MapPin, Info, Twitter, Facebook, Instagram, Home } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 const socialLinks = [
   { icon: Twitter, href: '#' },
@@ -17,6 +14,16 @@ const socialLinks = [
 ];
 
 export function SiteHeader() {
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
+
+  const navLinks = [
+    { href: '/', label: 'Home', icon: Home },
+    { href: isHomePage ? '#tours' : '/tours', label: 'Tours', icon: MapPin },
+    { href: isHomePage ? '#destinations' : '/destinations', label: 'Destinations', icon: Globe },
+    { href: '/about', label: 'About Us', icon: Info },
+  ];
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       {/* Top Bar */}

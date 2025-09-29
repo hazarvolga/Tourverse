@@ -27,6 +27,8 @@ import {
   Contact,
   Settings
 } from 'lucide-react';
+import { usePathname as useNextPathname } from 'next/navigation';
+
 
 const menuItems = [
   { href: '/dashboard', label: 'Overview', icon: LayoutDashboard },
@@ -42,7 +44,7 @@ const menuItems = [
 ];
 
 export function DashboardSidebar() {
-  const pathname = usePathname();
+  const pathname = useNextPathname();
 
   return (
     <Sidebar collapsible="icon">
